@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fresh Fruits Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" onclick="navigate('home')">
+        <span class="logo-icon">🍊</span>
+        <span class="logo-text">Fresh Fruits Market</span>
+      </a>
+      <nav class="nav-links">
+        <a class="nav-link" data-page="home" onclick="navigate('home')">หน้าหลัก</a>
+        <a class="nav-link" data-page="products" onclick="navigate('products')">สินค้า</a>
+        <a class="nav-link" data-page="orders" onclick="navigate('orders')">ประวัติสั่งซื้อ</a>
+        <a class="nav-link" data-page="admin" onclick="navigate('admin')">แอดมิน</a>
+      </nav>
+      <button class="cart-btn" onclick="toggleCart()" aria-label="ตะกร้าสินค้า">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-badge" id="cart-badge" style="display:none;">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HOME PAGE ========== -->
+  <main id="page-home" class="page active">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Fresh Fruits Market</h1>
+        <p class="hero-sub">ผลไม้สดคัดสรรคุณภาพ จากสวนถึงมือคุณ ส่งตรงทุกฤดูกาล</p>
+      </div>
+    </section>
+
+    <!-- Category Section -->
+    <section class="section section-light">
+      <h2 class="section-title">ประเภทผลไม้</h2>
+      <div class="category-grid">
+        <div class="category-card" onclick="goToCategory('citrus')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=500&auto=format&fit=crop" alt="ผลไม้ตระกูลส้ม" />
+          </div>
+          <div class="cat-info">
+            <h3 class="cat-name">ผลไม้ตระกูลส้ม</h3>
+            <p class="cat-desc">ส้ม มะนาว เกรปฟรุต ส้มโอ — อุดมด้วยวิตามินซี</p>
+          </div>
+        </div>
+        <div class="category-card" onclick="goToCategory('tropical')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?w=500&auto=format&fit=crop" alt="ผลไม้เขตร้อน" />
+          </div>
+          <div class="cat-info">
+            <h3 class="cat-name">ผลไม้เขตร้อน</h3>
+            <p class="cat-desc">สับปะรด มะพร้าว มะละกอ กล้วย — รสชาติแห่งเมืองร้อน</p>
+          </div>
+        </div>
+        <div class="category-card" onclick="goToCategory('berry')">
+          <div class="cat-img-wrap">
+            <img src="https://t1.blockdit.com/photos/2019/02/5c72a1ab7da1480d4bb8e89b_800x0xcover_IgEbcoU3.jpg" alt="เบอร์รี่" />
+          </div>
+          <div class="cat-info">
+            <h3 class="cat-name">เบอร์รี่</h3>
+            <p class="cat-desc">สตรอว์เบอร์รี่ บลูเบอร์รี่ ราสเบอร์รี่ — หวานอมเปรี้ยว</p>
+          </div>
+        </div>
+        <div class="category-card" onclick="goToCategory('stone')">
+          <div class="cat-img-wrap">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.qE9u9lxFU6qOSy_FwbFhwgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="ผลไม้เมล็ดแข็ง" />
+          </div>
+          <div class="cat-info">
+            <h3 class="cat-name">ผลไม้เมล็ดแข็ง</h3>
+            <p class="cat-desc">พีช เชอร์รี่ พลัม — เนื้อนุ่มน้ำเยิ้ม</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seasonal Section -->
+    <section class="section section-dark">
+      <h2 class="section-title light">ผลไม้ตามฤดูกาล</h2>
+      <div class="season-grid">
+        <div class="season-card season-card--summer" onclick="goToSeason('summer')">
+          <div class="season-img-wrap">
+            <img src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?w=500&auto=format&fit=crop" alt="ฤดูร้อน" />
+          </div>
+          <div class="season-info">
+            <h3 class="season-name">☀️ ฤดูร้อน</h3>
+            <p class="season-desc">มะม่วง แดงโม ลิ้นจี่ — ผลไม้หวาน ฉ่ำคลายร้อน</p>
+          </div>
+        </div>
+        <div class="season-card season-card--rainy" onclick="goToSeason('rainy')">
+          <div class="season-img-wrap">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&auto=format&fit=crop" alt="ฤดูฝน" />
+          </div>
+          <div class="season-info">
+            <h3 class="season-name">🌧️ ฤดูฝน</h3>
+            <p class="season-desc">ทุเรียน มังคุด ลองกอง — ราชาและราชินีผลไม้</p>
+          </div>
+        </div>
+        <div class="season-card season-card--winter" onclick="goToSeason('winter')">
+          <div class="season-img-wrap">
+            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&auto=format&fit=crop" alt="ฤดูหนาว" />
+          </div>
+          <div class="season-info">
+            <h3 class="season-name">❄️ ฤดูหนาว</h3>
+            <p class="season-desc">สตรอว์เบอร์รี่ องุ่น แอปเปิล — สดชื่นในอากาศเย็น</p>
+          </div>
+        </div>
+        <div class="season-card season-card--yellow" onclick="goToSeason('yearround')">
+          <div class="season-img-wrap">
+            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&auto=format&fit=crop" alt="ตลอดทั้งปี" />
+          </div>
+          <div class="season-info">
+            <h3 class="season-name">🍊 ตลอดทั้งปี</h3>
+            <p class="season-desc">กล้วย มะละกอ ฝรั่ง ส้ม — หาซื้อได้ทุกฤดู</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 Fresh Fruits Market — ผลไม้สดคุณภาพ ส่งตรงถึงบ้านคุณ</p>
+    </footer>
+
+  </main>
+
+  <!-- ========== PRODUCTS PAGE ========== -->
+  <main id="page-products" class="page">
+
+    <div class="products-header">
+      <h1 class="page-title">สินค้าของเรา</h1>
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-btn active" data-filter="all" onclick="filterProducts('all', this)">ทั้งหมด</button>
+        <button class="filter-btn" data-filter="citrus" onclick="filterProducts('citrus', this)">ตระกูลส้ม</button>
+        <button class="filter-btn" data-filter="tropical" onclick="filterProducts('tropical', this)">เขตร้อน</button>
+        <button class="filter-btn" data-filter="berry" onclick="filterProducts('berry', this)">เบอร์รี่</button>
+        <button class="filter-btn" data-filter="stone" onclick="filterProducts('stone', this)">เมล็ดแข็ง</button>
+      </div>
+    </div>
+
+    <div class="products-grid" id="products-grid"></div>
+
+    <footer class="footer">
+      <p>© 2026 Fresh Fruits Market — ผลไม้สดคุณภาพ ส่งตรงถึงบ้านคุณ</p>
+    </footer>
+
+  </main>
+
+  <!-- ========== ORDERS PAGE ========== -->
+  <main id="page-orders" class="page">
+    <div class="inner-page">
+      <h1 class="page-title green">ประวัติการสั่งซื้อ</h1>
+      <div id="orders-list" class="orders-list"></div>
+    </div>
+    <footer class="footer">
+      <p>© 2026 Fresh Fruits Market — ผลไม้สดคุณภาพ ส่งตรงถึงบ้านคุณ</p>
+    </footer>
+  </main>
+
+  <!-- ========== ADMIN PAGE ========== -->
+  <main id="page-admin" class="page">
+    <div class="inner-page">
+      <h1 class="page-title green">จัดการสินค้า (แอดมิน)</h1>
+
+      <div class="admin-form-card">
+        <h2 class="form-section-title">เพิ่มสินค้าใหม่</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">ชื่อสินค้า</label>
+            <input type="text" id="admin-name" class="form-input" placeholder="ชื่อสินค้า" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">ราคา (บาท/กก.)</label>
+            <input type="number" id="admin-price" class="form-input" placeholder="0" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">หมวดหมู่</label>
+            <select id="admin-category" class="form-input form-select">
+              <option value="citrus">ตระกูลส้ม</option>
+              <option value="tropical">เขตร้อน</option>
+              <option value="berry">เบอร์รี่</option>
+              <option value="stone">เมล็ดแข็ง</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ฤดูกาล</label>
+            <select id="admin-season" class="form-input form-select">
+              <option value="yearround">ตลอดทั้งปี</option>
+              <option value="summer">ฤดูร้อน</option>
+              <option value="rainy">ฤดูฝน</option>
+              <option value="winter">ฤดูหนาว</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">URL รูปภาพ</label>
+            <input type="text" id="admin-image" class="form-input" placeholder="https://..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">รายละเอียดสินค้า</label>
+            <input type="text" id="admin-desc" class="form-input" placeholder="คำอธิบายสินค้าๆ" />
+          </div>
+        </div>
+        <button class="btn btn-green" onclick="addProduct()">บันทึก</button>
+      </div>
+
+      <div class="admin-product-list">
+        <h2 class="form-section-title orange">รายการสินค้าทั้งหมด</h2>
+        <div id="admin-list"></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>© 2026 Fresh Fruits Market — ผลไม้สดคุณภาพ ส่งตรงถึงบ้านคุณ</p>
+    </footer>
+  </main>
+
+  <!-- ========== PRODUCT MODAL ========== -->
+  <div class="modal-overlay" id="product-modal" onclick="closeModal(event)">
+    <div class="modal-box" id="modal-box">
+      <button class="modal-close" onclick="closeProductModal()">✕</button>
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-name" id="modal-name"></h2>
+        <div class="modal-tags" id="modal-tags"></div>
+        <p class="modal-price" id="modal-price"></p>
+        <p class="modal-unit">หน่วย: กิโลกรัม</p>
+        <p class="modal-desc" id="modal-desc"></p>
+        <button class="btn btn-orange modal-add-btn" id="modal-add-btn">เพิ่มลงตะกร้า</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CART SIDEBAR ========== -->
+  <div class="cart-backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+
+    <!-- Step 1: Cart Items -->
+    <div id="cart-step-items" class="cart-step active">
+      <div class="cart-header">
+        <div class="cart-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span>ตะกร้าสินค้า</span>
+        </div>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>รวม</span>
+          <span class="cart-total-amount" id="cart-total">฿0</span>
+        </div>
+        <button class="btn btn-green btn-full" onclick="proceedCheckout()">ดำเนินการสั่งซื้อ</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Checkout Form -->
+    <div id="cart-step-checkout" class="cart-step">
+      <div class="cart-header">
+        <div class="cart-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span>ตะกร้าสินค้า</span>
+        </div>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="checkout-body">
+        <h3 class="checkout-section-title">ข้อมูลจัดส่ง</h3>
+        <div class="checkout-form">
+          <div class="cform-group full">
+            <label class="cform-label">ชื่อ-นามสกุล</label>
+            <input type="text" id="cf-name" class="cform-input" placeholder="ชื่อผู้รับ" />
+          </div>
+          <div class="cform-group full">
+            <label class="cform-label">เบอร์โทรศัพท์</label>
+            <input type="tel" id="cf-phone" class="cform-input" placeholder="0xx-xxx-xxxx" />
+          </div>
+          <div class="cform-group full">
+            <label class="cform-label">ที่อยู่</label>
+            <textarea id="cf-address" class="cform-input cform-textarea" placeholder="บ้านเลขที่ ซอย ถนน"></textarea>
+          </div>
+          <div class="cform-group half">
+            <label class="cform-label">แขวง/ตำบล</label>
+            <input type="text" id="cf-subdistrict" class="cform-input" />
+          </div>
+          <div class="cform-group half">
+            <label class="cform-label">เขต/อำเภอ</label>
+            <input type="text" id="cf-district" class="cform-input" />
+          </div>
+          <div class="cform-group half">
+            <label class="cform-label">จังหวัด</label>
+            <input type="text" id="cf-province" class="cform-input" />
+          </div>
+          <div class="cform-group half">
+            <label class="cform-label">รหัสไปรษณีย์</label>
+            <input type="text" id="cf-zip" class="cform-input" placeholder="10xxx" />
+          </div>
+        </div>
+      </div>
+      <div class="cart-footer checkout-footer">
+        <button class="btn btn-outline" onclick="backToCart()">ย้อนกลับ</button>
+        <button class="btn btn-green" onclick="confirmOrder()">ยืนยันสั่งซื้อ</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Success -->
+    <div id="cart-step-success" class="cart-step">
+      <div class="cart-header">
+        <div class="cart-title"><span>ตะกร้าสินค้า</span></div>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="success-body">
+        <div class="success-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2D6A1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3 class="success-title">สั่งซื้อสำเร็จ!</h3>
+        <p class="success-sub">ขอบคุณที่สั่งซื้อกับเรา</p>
+        <button class="btn btn-green" onclick="closeAfterSuccess()">ปิด</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
